@@ -1,0 +1,152 @@
+거꾸로 출력해 보아요 D1
+n = int(input())
+for i in range(n, -1, -1):
+    print(i, end=" ")
+
+----------------------------
+
+from random import *
+lst = list(range(1, 20))
+print(type(lst))
+shuffle(lst)
+print(lst)
+wins = sample(lst, 4)
+
+print("당첨자 발표")
+print('치킨 : {0}'.format(wins[0]))
+print('커피 : {0}'.format(wins[1:]))
+
+-----------------------------
+
+wether = input('날씨 : ')
+if wether == '비' or wether == '눈':
+    print('우산')
+elif wether == '미세먼지':
+    print('마스크')
+else:
+    print('없음')
+
+temp = int(input('기온 : '))
+if 30 <= temp:
+    print('더움')
+elif 10 <= temp and temp <30:
+    print('적절함')
+else:
+    print('추움')
+
+------------------------------
+
+from random import *
+cnt = 0
+for i in range(1, 51):
+    time = randrange(5, 51)
+    if 5 <= time <= 15:
+        print('[0] {0}번째 손님(소요시간 : {1}분'.format(i, time))
+        cnt += 1
+    else:
+        print('[ ] {0}번째 손님(소요시간 : {1}분'.format(i, time))
+print('총 탑승 승객 : {0}'.format(cnt))
+
+------------------------------
+
+def open_account():
+     print('계좌생성')
+open_account()
+
+def deposit(balance, money):
+    print('입금완료. 잔액 {0}원'.format(balance + money))
+    return balance + money
+
+def withdraw(balance, money):
+    if balance >= money:
+        print('출금완료. 잔액{0}원'.format(balance - money))
+        return balance - money
+    else:
+        print('출금안됨. 잔액{0}원'.format(balance))
+        return balance
+
+def withdraw_night(balance, money):
+    commission = 100
+    return commission, balance - money - commission
+
+balance = 5000
+#balance = deposit(balance, 500)
+balance = withdraw(balance, 100)
+commission, balance = withdraw_night(balance, 500)
+print('수수료{0}원이며, 잔액은 {1}원.'.format(commission, balance))
+
+---------------------------------
+
+def std_wehght(height, gender):
+    if gender == '남자':
+        return height * height * 22
+    else:
+        return height * height * 21
+
+height = 175
+gender = '남자'
+weight = round(std_wehght(height / 100, gender), 2)
+print('키 {0}cm {1}의 표준체중은 {2}kg입니다'.format(height, gender, weight))
+
+--------------------------------------
+
+class Unit:
+    def __init__(self, name, hp, speed):
+        self.name = name
+        self.hp = hp
+        self.speed = speed
+        # self.damage = damage
+        # print('{0}유닛 생성'.format(self.name))
+        # print('체력 {0}, 공격력{1}'.format(self.hp, self.damage))
+    def move(self, location):
+        print('[지상 유닛 이동]')
+        print('{0} : {1} 방향으로 이동합니다. [속도 {2}'\
+            .format(self.name, location, self.speed))
+
+class AttackUnit(Unit):
+    def __init__(self, name, hp, speed, damage):
+        Unit.__init__(self, name, hp, speed)
+        self.damage = damage
+
+    def attack(self, location):
+        print('{0} : {1} 방향으로 적군을 공격 [공격력{2}]'\
+            .format(self.name, location, self.damage))
+
+    def damaged(self, damage):
+        print('{0} : {1} 데미지를 입었습니다.'.format(self.name, damage))
+        self.hp -= damage
+        print('{0} : 현재 체력은 {1} 입니다.'.format(self.name, self.hp))
+        if self.hp <= 0:
+            print('{0} : 파괴되었습니다'.format(self.name))
+
+firebat1 = AttackUnit('파이어뱃', 50, 0, 16)
+firebat1.attack('5시')
+
+firebat1.damaged(25)
+firebat1.damaged(25)
+
+class Flyable:
+    def __init__(self, flying_speed):
+        self.flying_speed = flying_speed
+    def fly(self, name, location):
+        print('{0}:{1} 방향으로 날아갑니다. [속도 {2}]'\
+            .format(name, location, self.flying_speed))
+
+class FlyableAttackUnit(AttackUnit, Flyable):
+    def __init__(self, name, hp, damage, flying_speed):
+        AttackUnit.__init__(self, name, hp, 0, damage)
+        Flyable.__init__(self, flying_speed)
+    def move(self, location):
+        print('[공중 유닛 이동]')
+        self.fly(self.name, location)
+
+# valkyrie = FlyableAttackUnit('발키리', 200, 6, 5)
+# valkyrie.fly(valkyrie.name, '3시')
+
+vulture = AttackUnit('벌쳐', 80, 10, 20)
+
+battlecruiser = FlyableAttackUnit('배틀크루저', 500, 25, 3)
+
+vulture.move('11시')
+#battlecruiser.fly(battlecruiser.name, '9시')
+battlecruiser.move('9시')
