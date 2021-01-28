@@ -1,0 +1,79 @@
+print('세 정수의 최댓값을구한다.')
+a = int(input('정수 a 값 입력 : '))
+b = int(input('정수 b 값 입력 : '))
+c = int(input('정수 c 값 입력 : '))
+
+maximum = a
+
+if b > maximum : maximum = b
+if c > maximum : maximum = c
+    
+print(f'최댓값은 {maximum}입니다.')
+-----
+def med3(a, b, c):
+    if a >= b:
+        if b >= c:
+            return b
+        elif a <= c:
+            return a
+        else:
+            return c
+    elif a > c:
+        return a
+    elif b > c:
+        return c
+    else:
+        return b
+
+print('세 정수의 중앙값을 구합니다')
+a = int(input('정수 a의 값 : '))
+b = int(input('정수 b의 값 : '))
+c = int(input('정수 c의 값 : '))
+
+print(f'중앙값은 {med3(a, b, c)}입니다')
+-----
+print('1부터 n까지 정수의 합을 구합니다')
+n = int(input('n값을 입력하세요: '))
+
+sum = 0
+i = 1
+
+while i <= n:
+    sum += i
+    i += 1
+    
+print(f'1부터 {n}까지 정수의합은 {sum}입니다')
+print(f'i값은 {i}')
+-----
+print(f'a부터 b까지 정수의합을 구합니다')
+a = int(input('정수 a를 입력 : '))
+b = int(input('정수 b를 입력 : '))
+
+if a > b:
+    a, b = b, a
+    
+sum = 0
+for i in range(a, b + 1):
+    if i < b:
+        print(f'{i} + ', end = '')
+    else:
+        print(f'{i} = ', end = '')
+    sum += i
+print(sum)   
+#print(f'{a}부터 {b}까지 정수의합은 {sum}입니다')
+-----
+a = int(input('직사각형 넓이 : '))
+for i in range(1, a +1):
+    if i * i > a : break
+    if a % i : continue
+    print(f'{i} x {a // i}')
+-----
+a = int(input('짧은 변의 길이 : '))
+
+for i in range(a):
+    for _ in range(a - i - 1):
+        print(' ', end='')
+    for _ in range(i + 1):
+        print('*', end='')
+    print()
+-----
