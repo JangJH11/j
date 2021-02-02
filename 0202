@@ -1,0 +1,16 @@
+#연월일달력
+
+t = int(input())
+
+for test_case in range(1, t+1):
+    n = input()
+    last = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    month = int(n[4:6])
+    date = int(n[6:])
+    
+    if month > 12 or month < 1:
+        print(f'#{test_case}', '-1')
+    elif date < 1 or date > last[month-1]:
+        print(f'#{test_case}', '-1')
+    else:
+        print(f'#{test_case}', n[:4]+'/'+n[4:6]+'/'+n[6:])
