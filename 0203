@@ -1,0 +1,9 @@
+#알파벳을 숫자로 변환
+
+num = input()
+
+for i in num:
+    #print(ord(i), end=' ')
+    
+    a = int(ord(i))
+    print(a-64, end=' ')
