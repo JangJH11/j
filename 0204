@@ -1,0 +1,11 @@
+#
+
+print(input().upper())
+
+
+
+--------------
+
+t = input()
+ 
+print(t.upper())
