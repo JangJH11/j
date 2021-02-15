@@ -1,0 +1,36 @@
+# 1~20숫자중 3, 5의 배수 제외하고 제곱값 구하기
+
+t_list = []
+for e in range(1, 21):
+    a = e*e
+    if not (a%3) and not (a%5):
+        continue
+    t_list.append(a)
+print(t_list)
+
+--------------------
+
+#자릿수 더하기
+a = input()
+total = 0
+for i in a:
+    total += int(i)
+print(total)
+
+----------------------
+
+a = list(map(float, input().split(',')))
+ab = []
+
+for i in range(len(a)):
+    ab.append(round((int(a[i])*2)*3.141592, 2))
+print(f"{ab[0]}, {ab[1]}, {ab[2]}, {ab[3]}")    
+
+------------------------
+
+#콤마로 구분해 입력하고 단어를 사전순으로 출력
+a = input()
+tex = list(a.split(', '))
+tex = sorted(tex)
+result = ', '.join(tex)
+print(result)
