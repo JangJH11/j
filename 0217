@@ -1,0 +1,15 @@
+#쉬운 거스름돈 그리디
+
+t = int(input())
+coin = [50000, 10000, 5000, 1000, 500, 100, 50, 10]
+
+for test_case in range(1, t+1):
+    a = int(input())
+    p = []
+    print(f'#{test_case}')
+    for i in coin:
+        out = a // i
+        p.append(out)
+        a -= out * i
+        
+    print(f'{p[0]} {p[1]} {p[2]} {p[3]} {p[4]} {p[5]} {p[6]} {p[7]}')
