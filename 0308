@@ -1,0 +1,68 @@
+#HBase 실행하기
+
+[root@localhost hbase-2.3.4]# ./bin/start-hbase.sh 
+OpenJDK 64-Bit Server VM warning: If the number of processors is expected to increase from one, then you should configure the number of parallel GC threads appropriately using -XX:ParallelGCThreads=N
+master running as process 68151. Stop it first.
+[root@localhost hbase-2.3.4]# ./bin/h
+hbase             hbase-common.sh   hbase-daemon.sh   hbase-jruby       
+hbase-cleanup.sh  hbase-config.sh   hbase-daemons.sh  hirb.rb           
+[root@localhost hbase-2.3.4]# ./bin/hbase
+hbase             hbase-common.sh   hbase-daemon.sh   hbase-jruby       
+hbase-cleanup.sh  hbase-config.sh   hbase-daemons.sh  
+[root@localhost hbase-2.3.4]# ./bin/hbase shell
+OpenJDK 64-Bit Server VM warning: If the number of processors is expected to increase from one, then you should configure the number of parallel GC threads appropriately using -XX:ParallelGCThreads=N
+2021-03-05 13:22:03,207 WARN  [main] util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+HBase Shell
+Use "help" to get list of supported commands.
+Use "exit" to quit this interactive shell.
+For Reference, please visit: http://hbase.apache.org/2.0/book.html#shell
+Version 2.3.4, rafd5e4fc3cd259257229df3422f2857ed35da4cc, Thu Jan 14 21:32:25 UTC 2021
+Took 0.0006 seconds                                                                                       
+hbase(main):001:0> status
+1 active master, 0 backup masters, 1 servers, 0 dead, 2.0000 average load
+Took 0.8207 seconds                                                                                       
+hbase(main):002:0> create 'testtable', 'colfam1'
+Created table testtable
+Took 0.7237 seconds                                                                                       
+=> Hbase::Table - testtable
+hbase(main):003:0> list 'testtable'
+TABLE                                                                                                     
+testtable                                                                                                 
+1 row(s)
+Took 0.0340 seconds                                                                                       
+=> ["testtable"]
+hbase(main):004:0> put 'testtable', 'myrow-1', 'colfam1:q1', 'value-1'
+Took 0.2786 seconds                                                                                       
+hbase(main):005:0> put 'testtable', 'myrow-2', 'colfam1:q2', 'value-2'
+Took 0.0249 seconds                                                                                       
+hbase(main):006:0> put 'testtable', 'myrow-2', 'colfam1:q3', 'value-3'
+Took 0.0193 seconds                                                                                       
+hbase(main):007:0> scan 'testtable'
+ROW                         COLUMN+CELL                                                                   
+ myrow-1                    column=colfam1:q1, timestamp=2021-03-05T17:44:12.222, value=value-1           
+ myrow-2                    column=colfam1:q2, timestamp=2021-03-05T17:44:47.857, value=value-2           
+ myrow-2                    column=colfam1:q3, timestamp=2021-03-05T17:45:26.839, value=value-3           
+2 row(s)
+Took 0.1449 seconds                                                                                       
+hbase(main):008:0> get 'testtable', 'myrow-1'
+COLUMN                      CELL                                                                          
+ colfam1:q1                 timestamp=2021-03-05T17:44:12.222, value=value-1                              
+1 row(s)
+Took 0.0791 seconds                                                                                       
+hbase(main):009:0> delete 'testtable', 'myrow-2', 'colfam1:q2'
+Took 0.0194 seconds                                                                                       
+hbase(main):010:0> scan 'testtable'
+ROW                         COLUMN+CELL                                                                   
+ myrow-1                    column=colfam1:q1, timestamp=2021-03-05T17:44:12.222, value=value-1           
+ myrow-2                    column=colfam1:q3, timestamp=2021-03-05T17:45:26.839, value=value-3           
+2 row(s)
+Took 0.0131 seconds                                                                                       
+hbase(main):011:0> disable 'testtable'
+Took 0.4075 seconds                                                                                       
+hbase(main):012:0> drop 'testtable'
+Took 0.1877 seconds                                                                                       
+hbase(main):013:0> exit
+[root@localhost hbase-2.3.4]# bin/stop-hbase.sh
+stopping hbase...........
+OpenJDK 64-Bit Server VM warning: If the number of processors is expected to increase from one, then you should configure the number of parallel GC threads appropriately using -XX:ParallelGCThreads=N
+[root@localhost hbase-2.3.4]# 
